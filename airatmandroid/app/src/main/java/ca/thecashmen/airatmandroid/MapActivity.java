@@ -80,6 +80,8 @@ public class MapActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
 
+        mGoogleMap.setPadding(0, 130, 0, 0);
+
         mGoogleMap.setOnMapLongClickListener(this);
 
         mLocationRequest = new LocationRequest();
