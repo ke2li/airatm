@@ -19,7 +19,7 @@
         android:textSize="26dp"/>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/monetaryAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -28,7 +28,7 @@
         android:textAlignment="center"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/requestMoneyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/request_button_text" />
