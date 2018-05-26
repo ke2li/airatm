@@ -13,6 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}));
 app.use(routes);
 
-app.use("/api", router);
+//app.use("/api", router);
 
 app.listen(process.NODE_ENV.port || 3000); 
