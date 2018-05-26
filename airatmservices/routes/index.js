@@ -118,3 +118,5 @@ router.put("/transaction", (req,res) =>{
 router.put("/updateInfo", (req,res) =>{
 
 });
+
+module.exports = router;
