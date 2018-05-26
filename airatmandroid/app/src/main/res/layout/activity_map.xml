@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
 
     <EditText
@@ -19,12 +20,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/address_text"
         android:inputType="textPersonName"
         android:textSize="24dp"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -35,6 +37,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:src="@drawable/ic_round_check_circle_24px"
         android:tint="@color/colorPrimary"
         android:layout_alignParentRight="true" />
