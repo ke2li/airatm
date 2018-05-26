@@ -27,7 +27,30 @@ router.post('/newuser', (req, res) => {
 	res.redirect('/login');
 });
 
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    var response = {
+        success: false,
+        message: "Error"
+    };
+
+    User.find({email: email}, (err,users) => {
+        if (users.length > 0) {
+            var user = users[0];
+            if (user.password === password){
+                response.success = true;
+                response.message = "Successfully Authenticated";
+            } else {
+                response.message = "Wrong Password";
+            }
+        } else {
+            response.message = "User does not exist";
+        }
+    })
+
+    //res.redirect('/index');
 });
 
 router.get('/findUsers',(req,res) =>{
@@ -72,7 +95,11 @@ function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement fun
 }
 
 router.put("/transaction", (req,res) =>{
+	var email = req.body.email;
 
+	User.find({email: clientEmail}, (req,res)=>{
+		
+	});
 });
 
 router.put("/updateInfo", (req,res) =>{
