@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:orientation="vertical"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:gravity="center">
 
     <ImageView
         android:layout_width="match_parent"
@@ -54,6 +55,7 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorButton"
+        android:textSize="24dp"
         android:fontFamily="@font/futura"/>
 
     <Button
@@ -65,6 +67,7 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorButton"
+        android:textSize="24dp"
         android:fontFamily="@font/futura"/>
 
 </LinearLayout>
