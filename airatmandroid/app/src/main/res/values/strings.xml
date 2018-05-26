@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">airatm-android</string>
+    <string name="app_name">airatm</string>
+    <string name="request_button_text">REQUEST MONEY</string>
 </resources>
