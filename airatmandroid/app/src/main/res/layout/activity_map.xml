@@ -14,6 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
 
+    <!--
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
         android:inputType="textPersonName"
         android:textSize="24dp"
         android:background="@android:color/white" />
+    -->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
