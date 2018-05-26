@@ -34,7 +34,7 @@ import java.util.List;
 
 
 public class MapActivity extends AppCompatActivity
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
@@ -67,6 +67,8 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
+
+        mGoogleMap.setOnMapLongClickListener(this);
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(120000); // two minute interval
@@ -112,7 +114,7 @@ public class MapActivity extends AppCompatActivity
                 mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
                 //move map camera
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
             }
         }
     };
@@ -185,6 +187,14 @@ public class MapActivity extends AppCompatActivity
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    @Override
+    public void onMapLongClick(LatLng point) {
+        mCurrLocationMarker.remove();
+        mCurrLocationMarker= mGoogleMap.addMarker((new MarkerOptions().position(point))
+                .title("Meetup Point"));
+        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 17));
     }
 }
 /* public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
