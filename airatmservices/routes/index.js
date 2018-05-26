@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Transcation = require("../models/transactions");
 
 router.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
@@ -57,7 +58,7 @@ router.get('/findUsers',(req,res) =>{
 	var clientLongitude = req.body.longitude;
 	var clientLatitude = req.body.latitude;
 
-	user.find({}, function(err, users){
+	User.find({}, function(err, users){
 		var index = 0;
 		var nearbyUsers = {};
 		var nNearby = 0;
@@ -75,7 +76,7 @@ router.get('/findUsers',(req,res) =>{
 router.get('/findUserByEmail', (req, res) =>){
 	var email = req.body.email;
 
-	user.find({email: email}, function(err, users){
+	User.find({email: email}, function(err, users){
 		if(users.length > 0){
 			res.json(users[0]);
 		}
@@ -95,11 +96,23 @@ function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement fun
 }
 
 router.put("/transaction", (req,res) =>{
-	var email = req.body.email;
+	var clientEmail = req.body.clientEmail;
+	var merchantEmail = req.body.merchantEmail;
+	var commission = req.body.commission;
+	var amount = req.body.amount;
+	var accBalance = req.body.accBalance;
+	var cashOnHand = req.body.cashOnHand;
 
-	User.find({email: clientEmail}, (req,res)=>{
-		
-	});
+    User.fineOneAndUpdate({email: clientEmail}, {$set:{accBalance: accBalance-amount-commission, cashOnHand: cashOnHand+amount}}, function(err, res) {
+    	if (err) return res.send(500, {error:err});
+    	return res.send("Succesfully changed client account balance")
+    });
+
+
+	User.fineOneAndUpdate({email: merchantEmail}, {$set:{accBalance: accBalance+amount+commission, cashOnHand: cashOnHand-amount}}, function(err, res) {
+    	if (err) return res.send(500, {error:err});
+    	return res.send("Succesfully changed merchant account balance")
+    });
 });
 
 router.put("/updateInfo", (req,res) =>{
