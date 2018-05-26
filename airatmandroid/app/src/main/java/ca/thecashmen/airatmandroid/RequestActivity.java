@@ -26,10 +26,10 @@ public class RequestActivity extends AppCompatActivity {
         requestMoney.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(!requestAmount.getText().toString().matches("")){
+                if(!requestAmount.getText().toString().matches("") && Float.parseFloat(requestAmount.getText().toString()) != 0){
                     Intent intent = new Intent(RequestActivity.this, MapActivity.class);
                     startActivity(intent);
-                }else{
+                } else{
                     Toast.makeText(getApplicationContext(), "Please enter a monetary amount.", Toast.LENGTH_LONG).show();
                 }
             }
