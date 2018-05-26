@@ -28,10 +28,14 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".MapActivity" />
-        <activity
+
+	<activity
             android:name=".TestActivity"
             android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme"></activity>
+	    android:theme="@style/AppTheme"></activity>
+
+    	<activity android:name=".ConfirmationActivity"></activity>
+
     </application>
 
 </manifest>

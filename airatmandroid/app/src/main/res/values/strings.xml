@@ -4,4 +4,8 @@
     <string name="request_button_text">REQUEST MONEY</string>
     <string name="address_text">Address</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="merchant_text">Merchant: </string>
+    <string name="amount_text">Amount: </string>
+    <string name="location_text">Location: </string>
+    <string name="confirm_button_text">CONFIRM</string>
 </resources>
