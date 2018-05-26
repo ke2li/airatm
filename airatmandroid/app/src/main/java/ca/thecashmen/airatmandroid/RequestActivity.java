@@ -29,7 +29,7 @@ public class RequestActivity extends AppCompatActivity {
                 if(!requestAmount.getText().toString().matches("")){
                     Intent intent = new Intent(RequestActivity.this, MapActivity.class);
                     startActivity(intent);
-                }else{
+                } else{
                     Toast.makeText(getApplicationContext(), "Please enter a monetary amount.", Toast.LENGTH_LONG).show();
                 }
             }
