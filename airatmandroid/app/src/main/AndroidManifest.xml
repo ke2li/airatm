@@ -29,12 +29,7 @@
 
         <activity android:name=".MapActivity" />
 
-	<activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test"
-	    android:theme="@style/AppTheme"></activity>
-
-    	<activity android:name=".ConfirmationActivity"></activity>
+        <activity android:name=".ConfirmationActivity"></activity>
 
     </application>
 
