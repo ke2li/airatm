@@ -18,7 +18,7 @@ const transaction = mongoose.Schema({
 	},
 });
 
-user.methods.toJSONFor = function() {
+transaction.methods.toJSONFor = function() {
 	const {amount, commission, clientEmail, merchantEmail, verified} = this;
 	return {amount, commission, clientEmail, merchantEmail, verified};
 };
