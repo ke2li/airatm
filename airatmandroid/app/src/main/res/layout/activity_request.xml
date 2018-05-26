@@ -7,30 +7,37 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
+    android:background="@color/colorBackground"
     android:orientation="vertical" >
-    
-    <TextView
-        android:id="@+id/appName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:fontFamily="@font/futura"
-        android:textAlignment="center"
-        android:textSize="48dp" />
 
-    <EditText
-        android:id="@+id/requestAmount"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="@string/request_amount_hint"
-        android:textAlignment="center"
-        android:textSize="32dp"
-        android:fontFamily="@font/futura" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textSize="36dp"/>
+
+        <EditText
+            android:id="@+id/requestAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="@string/request_amount_hint"
+            android:textAlignment="center"
+            android:textSize="32dp"
+            android:fontFamily="@font/futura" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/requestMoneyButton"
+        android:background="@color/colorButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/request_button_text"
