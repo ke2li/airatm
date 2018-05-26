@@ -14,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="@font/futura"
         android:textAlignment="center"
-        android:textSize="26dp"/>
+        android:textSize="32dp" />
 
     <EditText
         android:id="@+id/monetaryAmount"
@@ -25,11 +25,13 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:hint="$0.00"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:fontFamily="@font/futura" />
 
     <Button
         android:id="@+id/requestMoneyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/request_button_text" />
+        android:text="@string/request_button_text"
+        android:fontFamily="@font/futura" />
 </LinearLayout>
