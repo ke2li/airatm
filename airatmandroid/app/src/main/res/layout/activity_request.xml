@@ -19,12 +19,12 @@
         android:textSize="32dp" />
 
     <EditText
-        android:id="@+id/monetaryAmount"
+        android:id="@+id/requestAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="$0.00"
+        android:hint="@string/request_amount_hint"
         android:textAlignment="center"
         android:fontFamily="@font/futura" />
 

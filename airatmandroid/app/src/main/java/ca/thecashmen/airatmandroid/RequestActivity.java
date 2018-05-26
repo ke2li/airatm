@@ -19,7 +19,7 @@ public class RequestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
 
-        requestAmount = (EditText) findViewById(R.id.monetaryAmount);
+        requestAmount = (EditText) findViewById(R.id.requestAmount);
         requestAmount.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
         requestMoney = findViewById(R.id.requestMoneyButton);
 
