@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
-routes.get('/newuser', (req, res) => {
+routes.post('/newuser', (req, res) => {
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
@@ -21,9 +21,17 @@ routes.get('/newuser', (req, res) => {
 
 	user.save()
 
-	res.redirect('.login');
+	res.redirect('/login');
 });
 
 routes.get('/login', (req, res) => {
+
+});
+
+routes.get('/findUsers',(req,res) =>{
+
+});
+
+routes.put("./transaction", (req,res) =>{
 
 });
