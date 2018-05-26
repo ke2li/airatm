@@ -73,7 +73,7 @@ router.get('/findUsers',(req,res) =>{
 	res.json(nearbyUsers);
 });
 
-router.get('/findUserByEmail', (req, res) =>){
+router.get('/findUserByEmail', (req, res) =>{
 	var email = req.body.email;
 
 	User.find({email: email}, function(err, users){
@@ -81,7 +81,7 @@ router.get('/findUserByEmail', (req, res) =>){
 			res.json(users[0]);
 		}
 	});
-}
+});
 
 function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement function
     var R = 6378.137; // Radius of earth in KM
