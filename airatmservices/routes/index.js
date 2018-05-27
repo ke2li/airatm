@@ -72,22 +72,24 @@ routes.post('/findUserByEmail', (req, res) =>{
 routes.post("/exchangeCash", (req,res) =>{
 	var clientEmail = req.body.clientEmail;
 	var merchantEmail = req.body.merchantEmail;
-	var newClientBalance = req.body.clientBalance;
-	var newMerchantBalance = req.body.merchantBalance;
-	var newClientCash = req.body.clientCash;
+	var newClientBalance = req.body.newClientBalance;
+	var newMerchantBalance = req.body.newMerchantBalance;
+	var newClientCash = req.body.newClientCash;
 	var newMerchantCash = req.body.newMerchantCash;
+	var newNumTradesClient = req.body.newNumTradesClient;
+	var newNumTradesMerchant = req.body.newNumTradesMerchant;
 
 	var clientUpdate = false;
 	var merchantUpdate = false;
 
 
-    User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash}, function(err, res) {
+    User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash, numTradesPerformed: newNumTradesClient}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	clientUpdate = true;
     });
 
 
-	User.findOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash}, function(err, res) {
+	User.findOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash, numTradesPerformed: newNumTradesMerchant}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	merchantUpdate = true;
     });
@@ -117,12 +119,13 @@ routes.post("/newTransaction", (req,res) => {
 
 	transaction.save(err=>{
 		if(err)return res.status(401).json(err);
+		res.send(JSON.stringify(transaction));
 	});
 });
 
 routes.post("/allTransactions", (req,res)=>{
 	Transaction.find({merchantEmail: undefined}, function(err, transactions){
-		res.send(JSON.stringify(tranactions));
+		res.send(JSON.stringify(transactions));
 	});
 });
 
@@ -137,28 +140,20 @@ routes.post("/satisfyRequest", (req, res)=>{
 
 routes.post("/transactionLookup", (req, res) =>{
 	var email = req.body.email;
-	var role = req.body.role;
-	if(role === "Merchant"){
-		Transaction.find({merchantEmail: email}, function(err, transactions){
-			if(transactions.length > 0){
-				res.send(transactions[0]);
-			}
-			else{
-				return res.status(401);
-			}
-		});
-	}
-	else{
-		Transaction.find({clientEmail: email}, function(err, transactions){
-			if(transactions.length > 0){
-				res.send(transactions[0]);
-			}
-			else{
-				return res.status(401);
-			}
-		});
-	}
+	Transaction.find({merchantEmail: email}, function(err, transactions){
+		if(transactions.length > 0){
+			res.send(transactions[0]);
+		}
+	});
 
+	Transaction.find({clientEmail: email}, function(err, transactions){
+		if(transactions.length > 0){
+			res.send(transactions[0]);
+		}
+		else{
+			return res.status(401);
+		}
+	});
 });
 
 module.exports = routes;

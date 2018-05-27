@@ -13,10 +13,6 @@ const transaction = mongoose.Schema({
 		type: String,
 	},
 
-	clientScore: {
-		type: String,
-	},
-
 	merchantEmail: {
 		type: String,
 	},
