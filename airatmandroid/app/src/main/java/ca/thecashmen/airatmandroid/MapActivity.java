@@ -218,8 +218,10 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     public void onMapClick(LatLng latLng){
-        mCurrLocationMarker.remove();
-        mCurrLocationMarker = null;
+        if(mCurrLocationMarker != null){
+            mCurrLocationMarker.remove();
+            mCurrLocationMarker = null;
+        }
     }
 
     @Override
