@@ -82,32 +82,16 @@ routes.post("/exchangeCash", (req,res) =>{
 	var newNumTradesClient = req.body.newNumTradesClient;
 	var newNumTradesMerchant = req.body.newNumTradesMerchant;
 
-	var clientUpdate = false;
-	var merchantUpdate = false;
-
-
     User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash, numTradesPerformed: newNumTradesClient}, function(err, res) {
     	if (err) return res.status(401).json(err);
-    	clientUpdate = true;
-    	if (clientUpdate && merchantUpdate){
-    		return res.status(200).json("Sucessfully updated");
-    	}
-    	else{
-    		return res.status(401).json("Update unsuccessful");
-    	}
     });
 
 
 	User.findOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash, numTradesPerformed: newNumTradesMerchant}, function(err, res) {
     	if (err) return res.status(401).json(err);
-    	merchantUpdate = true;
-    	if (clientUpdate && merchantUpdate){
-    		return res.status(200).json("Sucessfully updated");
-    	}
-    	else{
-    		return res.status(401).json("Update unsuccessful");
-    	}
     });
+
+    return res.status(200).json("Sucessfully updated");
 });
 
 routes.post("/newTransaction", (req,res) => {
@@ -159,26 +143,17 @@ routes.post("/transactionLookup", (req, res) =>{
 			res.status(200).json(transactions[0]);
 		} 
 		else{
-			merchantSent = false;
-		}
-		if(!merchantSent && !clientSent){
-			return res.status(401).json("No transaction found");
-		}
-	});
-
-	Transaction.find({clientEmail: email}, function(err, transactions){
-		if(err) return res.status(401).json(err);
-		if(transactions.length > 0){
-			res.status(200).json(transactions[0]);
-		}
-		else{
-			clientSent = false;
-		}
-		if(!merchantSent && !clientSent){
-			return res.status(401).json("No transaction found");
+			Transaction.find({clientEmail: email}, function(err, transactions){
+				if(err) return res.status(401).json(err);
+				if(transactions.length > 0){
+					res.status(200).json(transactions[0]);
+				}
+				else{
+					return res.status(401).json("No transactions found");
+				}
+			});
 		}
 	});
-
 });
 
 module.exports = routes;
