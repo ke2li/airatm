@@ -33,10 +33,14 @@ public class RegistrationActivity extends AppCompatActivity {
                         && !email.getText().toString().matches("")){
                     Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("firstName", firstName.getText().toString());
-                    bundle.putString("lastName", lastName.getText().toString());
-                    bundle.putString("email", email.getText().toString());
+                    /*
+                        just add to database?
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("firstName", firstName.getText().toString());
+                        bundle.putString("lastName", lastName.getText().toString());
+                        bundle.putString("email", email.getText().toString());
+                    */
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Please fill in all required boxes.", Toast.LENGTH_LONG).show();
