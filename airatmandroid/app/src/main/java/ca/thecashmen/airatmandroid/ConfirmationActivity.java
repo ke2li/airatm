@@ -29,6 +29,27 @@ public class ConfirmationActivity extends AppCompatActivity {
         authenticateButton = findViewById(R.id.authenticate_button);
         cancelButton = findViewById(R.id.cancel_button);
 
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConfirmationActivity.this.finish();
+            }
+        });
+
+        authenticateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ConfirmationActivity.this, ScannerActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("merchant", merchant_id.getText().toString());
+                bundle.putString("amount", merchant_id.getText().toString());
+                bundle.putDouble("latitude", getIntent().getExtras().getDouble("latitude"));
+                bundle.putDouble("longitude", getIntent().getExtras().getDouble("longitude"));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
         if(getIntent().getExtras() != null && getIntent().getExtras().getBoolean("confirmationButtonHide",false)){
             confirmButton.setVisibility(View.GONE);
             authenticateButton.setVisibility(View.VISIBLE);
