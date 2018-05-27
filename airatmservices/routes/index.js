@@ -6,20 +6,17 @@ const Transcation = require("../models/transactions");
 routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
 routes.post('/newuser', (req, res) => {
-	var firstName = req.body.firstName;
+	/*var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
-	var email = req.body.email;
+	var email = req.body.email;*/
+	console.log(req.body);
+	const{ firstname, lastName, password, email} = req.body
 
 
 	//if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
 
-	var user = new User({
-		firstName: firstName,
-		lastName: lastName,
-		password: password,
-		email: email
-	});
+	var user = new User({firstName, lastName, password, email});
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
