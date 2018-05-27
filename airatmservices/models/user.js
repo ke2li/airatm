@@ -19,22 +19,22 @@ const user = mongoose.Schema({
 
 	reputation: {
 		type: Number,
-		//default: 0,
+		default: 0,
 	},
 
 	verified: {
 		type: Boolean,
-		//default: false,
+		default: false,
 	},
 
 	accBalance: {
 		type: Number,
-		//default: 0,
+		default: 0,
 	},
 
 	cashOnHand: {
 		type: Number,
-		//default: 0,
+		default: 0,
 	},
 
 	longitude: {
