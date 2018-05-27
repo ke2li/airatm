@@ -46,14 +46,14 @@ routes.post('/login', (req, res) => {
         } else {
             response.message = "User does not exist";
         }
-        res.send(response.success + email + password + " " + user.email + user.password);
+        res.send(response.success);
     })
     //res.redirect('/index');
 });
 
 routes.get('/findUsers',(req,res) =>{
-	var clientLongitude = req.body.longitude;
-	var clientLatitude = req.body.latitude;
+	var clientLongitude = req.params.longitude;
+	var clientLatitude = req.params.latitude;
 
 	User.find({}, function(err, users){
 		var index = 0;
@@ -66,8 +66,8 @@ routes.get('/findUsers',(req,res) =>{
 			}
 			index++;
 		}
+		res.send(JSON.stringify(nearbyUsers));
 	});
-	res.json(nearbyUsers);
 });
 
 routes.get('/findUserByEmail', (req, res) =>{
