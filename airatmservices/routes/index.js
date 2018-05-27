@@ -25,7 +25,7 @@ routes.post('/newuser', (req, res) => {
 		//res.json(user);
 	});
 
-	res.sned(JSON.stringify(user));
+	res.send(JSON.stringify(user));
 	//res.redirect('/login');
 });
 
