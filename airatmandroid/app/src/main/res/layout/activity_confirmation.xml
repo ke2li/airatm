@@ -32,7 +32,7 @@
 
         <EditText
             android:id="@+id/merchant_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="[merchant]"
             android:textAlignment="center"
@@ -61,7 +61,7 @@
 
         <EditText
             android:id="@+id/amount_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="[amount]"
             android:textAlignment="center"
@@ -90,7 +90,7 @@
 
         <EditText
             android:id="@+id/location_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="[location]"
             android:textAlignment="center"
@@ -99,48 +99,58 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/confirm_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="@string/confirm_button_text"
-        android:textSize="24dp"
-        android:background="@color/colorButton"
-        android:fontFamily="@font/futura" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical" >
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
         <Button
-            android:id="@+id/authenticate_button"
+            android:id="@+id/confirm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
-            android:text="@string/authenticate_button_text"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/confirm_button_text"
             android:textSize="24dp"
             android:background="@color/colorButton"
             android:fontFamily="@font/futura" />
 
-        <Button
-            android:id="@+id/cancel_button"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:text="@string/cancel_button_text"
-            android:textSize="24dp"
-            android:background="@color/colorButton"
-            android:fontFamily="@font/futura" />
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/authenticate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/authenticate_button_text"
+                android:textSize="24dp"
+                android:background="@color/colorButton"
+                android:fontFamily="@font/futura" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/cancel_button_text"
+                android:textSize="24dp"
+                android:background="@color/colorButton"
+                android:fontFamily="@font/futura" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
