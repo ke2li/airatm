@@ -55,4 +55,4 @@ user.methods.toJSONFor = function() {
 	return {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online};
 };
 
-module.exports = mongoose.model("user", user);
+module.exports = mongoose.model("User", user);
