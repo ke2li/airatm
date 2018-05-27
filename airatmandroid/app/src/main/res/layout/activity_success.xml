@@ -100,6 +100,39 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TextView
+            android:id="@+id/rate_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura"
+            android:text="@string/rate_text"
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/thumbs_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:src="@drawable/ic_thumbs_up"/>
+
+        <ImageView
+            android:id="@+id/thumbs_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_thumbs_down"/>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/OK_button"
         android:layout_width="wrap_content"

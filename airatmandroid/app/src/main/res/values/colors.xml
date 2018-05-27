@@ -5,4 +5,7 @@
     <color name="colorAccent">#14BC40</color>
     <color name="colorBackground">#00820F</color>
     <color name="colorButton">#00b730</color>
+    <color name="colorThumbsUp">#0BA533</color>
+    <color name="colorThumbsDown">#D11010</color>
+    <color name="colorThumbsDefault">#FFFFFF</color>
 </resources>
