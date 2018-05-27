@@ -71,6 +71,7 @@ public class MapActivity extends AppCompatActivity
                     bundle.putDouble("longitude", currentLocation.longitude);
                     Intent intent = new Intent(MapActivity.this,
                             ConfirmationActivity.class);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 } else{
                     Toast.makeText(getApplicationContext(), "Please select a location.",
