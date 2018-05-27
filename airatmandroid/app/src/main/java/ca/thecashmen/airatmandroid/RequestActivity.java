@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 public class RequestActivity extends AppCompatActivity {
 
-    private Button requestMoney;
     private EditText requestAmount;
+    private Button requestMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
