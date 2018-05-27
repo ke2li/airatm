@@ -19,7 +19,7 @@ routes.post('/newuser', (req, res) => {
 	});
 
 	user.save(err => {
-		if(err) return res.status(400).json(err);
+		if(err) return res.status(401).json(err);
 		console.log("Registration success");
 		//res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	});
@@ -40,14 +40,16 @@ routes.post('/login', (req, res) => {
             if (user.password === password){
                 response.success = true;
                 response.message = "Successfully Authenticated";
+                return res.status(200);
             } else {
                 response.message = "Wrong Password";
+                return res.status(401);
             }
         } else {
             response.message = "User does not exist";
+            return res.status(401);
         }
-        res.send(response.success);
-    })
+    });
     //res.redirect('/index');
 });
 
@@ -79,7 +81,6 @@ routes.post("/exchangeCash", (req,res) =>{
 	var merchantUpdate = false;
 
 
-
     User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	clientUpdate = true;
@@ -91,8 +92,12 @@ routes.post("/exchangeCash", (req,res) =>{
     	merchantUpdate = true;
     });
 
-    if (clientUpdate && merchantUpdate)
-    	res.send("Successful transaction");
+    if (clientUpdate && merchantUpdate){
+    	return res.status(200);
+    }
+    else{
+    	return res.status(401);
+    }
 });
 
 routes.post("/newTransaction", (req,res) => {
@@ -111,13 +116,13 @@ routes.post("/newTransaction", (req,res) => {
 	});
 
 	transaction.save(err=>{
-		if(err)return res.status(400).json(err);
+		if(err)return res.status(401).json(err);
 	});
 });
 
 routes.post("/allTransactions", (req,res)=>{
-	Transaction.find({merchantEmail: undefined}, function(err, users){
-		res.send(JSON.stringify(users));
+	Transaction.find({merchantEmail: undefined}, function(err, transactions){
+		res.send(JSON.stringify(tranactions));
 	});
 });
 
@@ -126,20 +131,34 @@ routes.post("/satisfyRequest", (req, res)=>{
 	var merchantEmail = req.body.merchantEmail;
 
 	Transaction.findOneAndUpdate({clientEmail: clientEmail},{merchantEmail: merchantEmail}, function(err, transactions){
-		if(err) return res.send(500,{error,err});
+		if(err) return res.send(401,{error,err});
 	});
 });
 
 routes.post("/transactionLookup", (req, res) =>{
 	var email = req.body.email;
-	Transaction.find({merchantEmail: email || clientEmail: email}, function(err, transactions){
-		if(transactions.length > 0){
-			res.send(transactions[0]);
-		}
-		else{
-			return res.status(404);
-		}
-	});
+	var role = req.body.role;
+	if(role === "Merchant"){
+		Transaction.find({merchantEmail: email}, function(err, transactions){
+			if(transactions.length > 0){
+				res.send(transactions[0]);
+			}
+			else{
+				return res.status(401);
+			}
+		});
+	}
+	else{
+		Transaction.find({clientEmail: email}, function(err, transactions){
+			if(transactions.length > 0){
+				res.send(transactions[0]);
+			}
+			else{
+				return res.status(401);
+			}
+		});
+	}
+
 });
 
 module.exports = routes;

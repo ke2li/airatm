@@ -29,12 +29,12 @@ const user = mongoose.Schema({
 
 	accBalance: {
 		type: Number,
-		default: 0,
+		default: 100,
 	},
 
 	cashOnHand: {
 		type: Number,
-		default: 0,
+		default: 100,
 	},
 
 	longitude: {
