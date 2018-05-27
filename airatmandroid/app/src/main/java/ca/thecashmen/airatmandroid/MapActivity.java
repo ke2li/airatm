@@ -37,7 +37,7 @@ import java.util.List;
 
 
 public class MapActivity extends AppCompatActivity
-        implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+        implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener, GoogleMap.OnMapClickListener {
 
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
@@ -45,23 +45,29 @@ public class MapActivity extends AppCompatActivity
     Location mLastLocation;
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
-    FloatingActionButton okayButton;
+    FloatingActionButton OKButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        okayButton = findViewById(R.id.fab);
+        OKButton = findViewById(R.id.fab);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
 
-        okayButton.setOnClickListener(new View.OnClickListener() {
+        OKButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MapActivity.this, ConfirmationActivity.class);
-                startActivity(intent);
+                if(mCurrLocationMarker != null){
+                    Intent intent = new Intent(MapActivity.this,
+                            ConfirmationActivity.class);
+                    startActivity(intent);
+                } else{
+                    Toast.makeText(getApplicationContext(), "Please select a location.",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -82,6 +88,7 @@ public class MapActivity extends AppCompatActivity
 
         mGoogleMap.setPadding(0, 130, 0, 0);
 
+        mGoogleMap.setOnMapClickListener(this);
         mGoogleMap.setOnMapLongClickListener(this);
 
         mLocationRequest = new LocationRequest();
@@ -102,7 +109,8 @@ public class MapActivity extends AppCompatActivity
                 checkLocationPermission();
             }
         } else{
-            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                    mLocationCallback, Looper.myLooper());
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
@@ -114,7 +122,8 @@ public class MapActivity extends AppCompatActivity
             if(locationList.size() > 0){
                 //The last location in the list is the newest
                 Location location = locationList.get(locationList.size() - 1);
-                Log.i("MapActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
+                Log.i("MapActivity", "Location: " + location.getLatitude()
+                        + " " + location.getLongitude());
                 mLastLocation = location;
                 if(mCurrLocationMarker != null){
                     mCurrLocationMarker.remove();
@@ -137,7 +146,6 @@ public class MapActivity extends AppCompatActivity
     private void checkLocationPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
-
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)){new AlertDialog.Builder(this)
                         .setTitle("Location Permission Needed")
@@ -148,13 +156,11 @@ public class MapActivity extends AppCompatActivity
                                 //Prompt the user once explanation has been shown
                                 ActivityCompat.requestPermissions(MapActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         })
                         .create()
                         .show();
-
-
             } else{
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -165,7 +171,7 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String permissions[], int[] grantResults){
         switch(requestCode){
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -177,10 +183,10 @@ public class MapActivity extends AppCompatActivity
                             Manifest.permission.ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
 
-                        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                                mLocationCallback, Looper.myLooper());
                         mGoogleMap.setMyLocationEnabled(true);
                     }
-
                 } else{
                     Toast.makeText(this, "Permission denied.", Toast.LENGTH_LONG).show();
                 }
@@ -195,5 +201,10 @@ public class MapActivity extends AppCompatActivity
         mCurrLocationMarker= mGoogleMap.addMarker((new MarkerOptions().position(point))
                 .title("Meetup Point"));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 17));
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        mCurrLocationMarker.remove();
     }
 }
