@@ -9,21 +9,21 @@ routes.post('/newuser', (req, res) => {
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
-	var email = req.body.password;
+	var email = req.body.email;
 
-	if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
+	//if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
 
 	var user = new User({
 		firstName: firstName,
 		lastName: lastName,
 		password: password,
 		email: email
-	})	
+	});
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
 		res.json(user);
-	})
+	});
 
 	res.redirect('/login');
 });
