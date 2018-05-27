@@ -21,7 +21,7 @@ routes.post('/newuser', (req, res) => {
 	user.save(err => {
 		if(err) return res.status(400).json(err);
 		console.log("Registration success");
-		res.send(JSON.stringify(user) + firstName + lastName + password + email);
+		//res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	});
 });
 
@@ -47,7 +47,7 @@ routes.post('/login', (req, res) => {
             response.message = "User does not exist";
         }
     })
-    res.send(response.success);
+    res.send(response.success + email + password + " " + user.email + user.password);
     //res.redirect('/index');
 });
 
