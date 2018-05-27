@@ -42,7 +42,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                 Intent intent = new Intent(ConfirmationActivity.this, ScannerActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("merchant", merchant_id.getText().toString());
-                bundle.putString("amount", merchant_id.getText().toString());
+                bundle.putFloat("amount", Float.parseFloat(merchant_id.getText().toString()));
                 bundle.putDouble("latitude", getIntent().getExtras().getDouble("latitude"));
                 bundle.putDouble("longitude", getIntent().getExtras().getDouble("longitude"));
                 intent.putExtras(bundle);
