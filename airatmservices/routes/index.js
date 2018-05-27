@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const User = require('../models/user');
-const Transcation = require("../models/transactions");
+const Transaction = require("../models/transactions");
 
 routes.post('/', (req, res) => res.send('Nothing Here'));
 
