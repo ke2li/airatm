@@ -56,9 +56,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 // if(a transaction exists)
+                Intent intent = new Intent(MenuActivity.this, ConfirmationActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("confirmationButtonHide", true);
-                Intent intent = new Intent(MenuActivity.this, ConfirmationActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

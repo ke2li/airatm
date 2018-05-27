@@ -12,8 +12,6 @@ import android.widget.Toast;
 public class ConfirmationActivity extends AppCompatActivity {
 
     private TextView merchant_id;
-    private TextView amount_id;
-    private TextView location_id;
     private Button confirmButton;
     private Button authenticateButton;
     private Button cancelButton;
@@ -24,8 +22,6 @@ public class ConfirmationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirmation);
 
         merchant_id = findViewById(R.id.merchant_id);
-        amount_id = findViewById(R.id.amount_id);
-        location_id = findViewById(R.id.location_id);
         confirmButton = findViewById(R.id.confirm_button);
         authenticateButton = findViewById(R.id.authenticate_button);
         cancelButton = findViewById(R.id.cancel_button);
