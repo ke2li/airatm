@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class SuccessActivity extends AppCompatActivity {
 
+
     private Button OKButton;
     private ImageView thumbsUp;
     private ImageView thumbsDown;
