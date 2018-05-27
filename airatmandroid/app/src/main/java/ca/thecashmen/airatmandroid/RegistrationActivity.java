@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText first_name;
-    private EditText last_name;
+    private EditText firstName;
+    private EditText lastName;
     private EditText email;
     private Button registerButton;
 
@@ -20,19 +20,27 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        first_name = findViewById(R.id.first_name);
-        last_name = findViewById(R.id.last_name);
+        firstName = findViewById(R.id.first_name);
+        lastName = findViewById(R.id.last_name);
         email = findViewById(R.id.email);
         registerButton = findViewById(R.id.register_button);
 
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(!first_name.getText().toString().matches("")
-                        && !last_name.getText().toString().matches("")
+                if(!firstName.getText().toString().matches("")
+                        && !lastName.getText().toString().matches("")
                         && !email.getText().toString().matches("")){
                     Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    /*
+                        just add to database?
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("firstName", firstName.getText().toString());
+                        bundle.putString("lastName", lastName.getText().toString());
+                        bundle.putString("email", email.getText().toString());
+                    */
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Please fill in all required boxes.", Toast.LENGTH_LONG).show();
