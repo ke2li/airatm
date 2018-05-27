@@ -1,11 +1,11 @@
 const express = require('express');
-const router = express.Router();
+const routes = express.Router();
 const User = require('../models/user');
 const Transcation = require("../models/transactions");
 
-router.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
+routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
-router.post('/newuser', (req, res) => {
+routes.post('/newuser', (req, res) => {
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
@@ -17,8 +17,8 @@ router.post('/newuser', (req, res) => {
 		firstName: firstName,
 		lastName: lastName,
 		password: password,
-		email: email,
-	})
+		email: email
+	})	
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
@@ -28,7 +28,7 @@ router.post('/newuser', (req, res) => {
 	res.redirect('/login');
 });
 
-router.post('/login', (req, res) => {
+routes.post('/login', (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
 
@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
     //res.redirect('/index');
 });
 
-router.get('/findUsers',(req,res) =>{
+routes.get('/findUsers',(req,res) =>{
 	var clientLongitude = req.body.longitude;
 	var clientLatitude = req.body.latitude;
 
@@ -73,7 +73,7 @@ router.get('/findUsers',(req,res) =>{
 	res.json(nearbyUsers);
 });
 
-router.get('/findUserByEmail', (req, res) =>{
+routes.get('/findUserByEmail', (req, res) =>{
 	var email = req.body.email;
 
 	User.find({email: email}, function(err, users){
@@ -95,7 +95,7 @@ function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement fun
     return d * 1000; // meters
 }
 
-router.put("/transaction", (req,res) =>{
+routes.put("/transaction", (req,res) =>{
 	var clientEmail = req.body.clientEmail;
 	var merchantEmail = req.body.merchantEmail;
 	var commission = req.body.commission;
@@ -115,8 +115,8 @@ router.put("/transaction", (req,res) =>{
     });
 });
 
-router.put("/updateInfo", (req,res) =>{
+routes.put("/updateInfo", (req,res) =>{
 
 });
 
-module.exports = router;
+module.exports = routes;
