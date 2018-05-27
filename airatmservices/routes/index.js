@@ -18,7 +18,7 @@ routes.post('/newuser', (req, res) => {
 		lastName: lastName,
 		password: password,
 		email: email
-	});
+	})
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
