@@ -55,6 +55,8 @@ routes.get('/findUsers',(req,res) =>{
 	var clientLongitude = req.params.longitude;
 	var clientLatitude = req.params.latitude;
 
+	res.send(clientLongitude + " " + clientLatitude);
+
 	User.find({}, function(err, users){
 		var index = 0;
 		var nearbyUsers = {};
