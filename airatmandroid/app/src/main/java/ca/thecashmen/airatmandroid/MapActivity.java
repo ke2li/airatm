@@ -95,7 +95,7 @@ public class MapActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap){
         mGoogleMap = googleMap;
 
-        mGoogleMap.setPadding(0, 130, 0, 0);
+        mGoogleMap.setPadding(0, 0, 0, 0);
 
         mGoogleMap.setOnMapClickListener(this);
         mGoogleMap.setOnMapLongClickListener(this);
