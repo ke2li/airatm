@@ -63,7 +63,7 @@ routes.post('/findUsers',(req,res) =>{
 		var nNearby = 0;
 		while(users[index] != undefined){
 			//500 metre radius
-			if(measure(clientLatitude, clientLongitude, users[i].latitude, users[i].longitude) < 500){
+			if(measure(clientLatitude, clientLongitude, users[index].latitude, users[index].longitude) < 500){
 				nearbyUsers[nNearby++] = users[index];
 			}
 			index++;
