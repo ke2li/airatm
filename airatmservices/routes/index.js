@@ -73,7 +73,7 @@ routes.post("/exchangeCash", (req,res) =>{
 	var newClientBalance = req.body.clientBalance;
 	var newMerchantBalance = req.body.merchantBalance;
 	var newClientCash = req.body.clientCash;
-	var newMerchantCash = req.body.
+	var newMerchantCash = req.body.newMerchantCash;
 	var amount = req.body.amount;
 
 	var clientUpdate = false;
