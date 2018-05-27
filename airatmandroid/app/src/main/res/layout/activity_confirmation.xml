@@ -10,7 +10,7 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="360dp"/>
+        android:layout_height="340dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:id="@+id/merchant_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[merchant]"
+            android:text="david@me.ca"
             android:textAlignment="center"
             android:fontFamily="@font/futura"
             android:textSize="24dp" />
@@ -63,7 +63,7 @@
             android:id="@+id/amount_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[amount]"
+            android:text="$50.00"
             android:textAlignment="center"
             android:fontFamily="@font/futura"
             android:textSize="24dp" />
@@ -92,7 +92,7 @@
             android:id="@+id/location_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[location]"
+            android:text="43.657745, -79.377314"
             android:textAlignment="center"
             android:fontFamily="@font/futura"
             android:textSize="24dp" />
@@ -105,6 +105,7 @@
         android:layout_height="0dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:gravity="center_vertical">
 

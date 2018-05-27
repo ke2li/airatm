@@ -2,7 +2,7 @@ package ca.thecashmen.airatmandroid.Services;
 
 import java.util.List;
 
-import ca.thecashmen.airatmandroid.Model.ExchangeRequest;
+// import ca.thecashmen.airatmandroid.Model.ExchangeRequest;
 import ca.thecashmen.airatmandroid.Model.Transaction;
 import ca.thecashmen.airatmandroid.Model.User;
 import okhttp3.ResponseBody;
@@ -27,8 +27,8 @@ public interface PostService {
 	@POST("/findUserByEmail")
 	Call<User> getUserByEmail(@Body User user);
 
-	@POST("/exchangeCash")
-	Call<ResponseBody> performTransaction(@Body ExchangeRequest exchangeRequest);
+	// @POST("/exchangeCash")
+	// Call<ResponseBody> performTransaction(@Body ExchangeRequest exchangeRequest);
 
 	@POST("/newTransaction")
 	Call<ResponseBody> makeTransaction(@Body Transaction transaction);
