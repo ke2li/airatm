@@ -29,7 +29,7 @@
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/merchant_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/amount_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/location_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
