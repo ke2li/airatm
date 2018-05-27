@@ -11,6 +11,7 @@ routes.post('/newuser', (req, res) => {
 	var password = req.body.password;
 	var email = req.body.email;
 	console.log(req.body);
+	console.log(firstName + " " + lastName + " " + password + " " + email);
 
 	var user = new User({
 		firstName: firstName,
