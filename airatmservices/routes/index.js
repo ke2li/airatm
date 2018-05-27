@@ -5,13 +5,11 @@ const Transcation = require("../models/transactions");
 
 routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
-routes.post('/newuser', (req, res) => {
+routes.post('/newuser', (req, res, next) => {
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
 	var email = req.body.email;
-
-	//if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
 
 	var user = new User({
 		firstName: firstName,
@@ -22,10 +20,8 @@ routes.post('/newuser', (req, res) => {
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
-		res.json(user);
+		console.log("Registration sucess");
 	});
-
-	res.redirect('/login');
 });
 
 routes.post('/login', (req, res) => {
@@ -50,7 +46,6 @@ routes.post('/login', (req, res) => {
             response.message = "User does not exist";
         }
     })
-
     //res.redirect('/index');
 });
 

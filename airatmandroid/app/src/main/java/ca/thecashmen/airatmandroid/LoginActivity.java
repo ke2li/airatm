@@ -20,8 +20,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.register_button);
 
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view){
                 if(!email.getText().toString().matches("") && !password.getText().toString().matches("")
                     /*&& valid credentials*/){
-                    Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();

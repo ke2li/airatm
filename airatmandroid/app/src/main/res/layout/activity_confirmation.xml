@@ -4,36 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ConfirmationActivity" >
+    tools:context=".ConfirmationActivity"
+    android:background="@color/colorBackground">
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="320dp" />
+        android:layout_height="360dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical" >
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/merchant_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/futura"
             android:paddingLeft="10dp"
             android:text="@string/merchant_text"
-            android:fontFamily="@font/futura"
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/merchant_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[merchant]"
             android:fontFamily="@font/futura"
+            android:text="[merchant]"
             android:textAlignment="center"
             android:textSize="24dp" />
 
@@ -56,7 +57,7 @@
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/amount_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +85,7 @@
             android:textAlignment="center"
             android:textSize="24dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/location_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,11 +97,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/requestMoneyButton"
+        android:id="@+id/confirm_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/confirm_button_text"
         android:textSize="24dp"
+        android:background="@color/colorButton"
         android:fontFamily="@font/futura" />
 
 </LinearLayout>

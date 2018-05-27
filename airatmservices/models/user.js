@@ -9,32 +9,32 @@ const user = mongoose.Schema({
 		type: String,
 	},
 
-	email: {
+	password: {
 		type: String,
 	},
 
-	password: {
+	email: {
 		type: String,
 	},
 
 	reputation: {
 		type: Number,
-		default: 0,
+		//default: 0,
 	},
 
 	verified: {
 		type: Boolean,
-		default: false,
+		//default: false,
 	},
 
 	accBalance: {
 		type: Number,
-		default: 0,
+		//default: 0,
 	},
 
 	cashOnHand: {
 		type: Number,
-		default: 0,
+		//default: 0,
 	},
 
 	longitude: {
@@ -55,4 +55,4 @@ user.methods.toJSONFor = function() {
 	return {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online};
 };
 
-module.exports = mongoose.model("user", user);
+module.exports = mongoose.model("User", user);

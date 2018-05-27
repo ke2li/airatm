@@ -37,7 +37,8 @@ import java.util.List;
 
 
 public class MapActivity extends AppCompatActivity
-        implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener, GoogleMap.OnMapClickListener {
+        implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener,
+        GoogleMap.OnMapClickListener, GoogleMap.OnMyLocationButtonClickListener {
 
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
@@ -46,6 +47,7 @@ public class MapActivity extends AppCompatActivity
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
     FloatingActionButton OKButton;
+    LatLng currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,9 @@ public class MapActivity extends AppCompatActivity
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
 
-        OKButton.setOnClickListener(new View.OnClickListener() {
+        OKButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 if(mCurrLocationMarker != null){
                     Intent intent = new Intent(MapActivity.this,
                             ConfirmationActivity.class);
@@ -83,13 +85,14 @@ public class MapActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap){
         mGoogleMap = googleMap;
 
         mGoogleMap.setPadding(0, 130, 0, 0);
 
         mGoogleMap.setOnMapClickListener(this);
         mGoogleMap.setOnMapLongClickListener(this);
+        mGoogleMap.setOnMyLocationButtonClickListener(this);
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(120000); // two minute interval
@@ -137,6 +140,7 @@ public class MapActivity extends AppCompatActivity
                 mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
                 //move map camera
+                currentLocation = latLng;
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
             }
         }
@@ -197,14 +201,27 @@ public class MapActivity extends AppCompatActivity
 
     @Override
     public void onMapLongClick(LatLng point){
-        mCurrLocationMarker.remove();
-        mCurrLocationMarker= mGoogleMap.addMarker((new MarkerOptions().position(point))
+        if(mCurrLocationMarker != null) {
+            mCurrLocationMarker.remove();
+        }
+        mCurrLocationMarker = mGoogleMap.addMarker((new MarkerOptions().position(point))
                 .title("Meetup Point"));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 17));
     }
 
     @Override
-    public void onMapClick(LatLng latLng) {
+    public void onMapClick(LatLng latLng){
         mCurrLocationMarker.remove();
+        mCurrLocationMarker = null;
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick(){
+        if(mCurrLocationMarker != null){
+            mCurrLocationMarker.remove();
+        }
+        mCurrLocationMarker = mGoogleMap.addMarker((new MarkerOptions().position(currentLocation))
+                .title("Meetup Point"));
+        return false;
     }
 }
