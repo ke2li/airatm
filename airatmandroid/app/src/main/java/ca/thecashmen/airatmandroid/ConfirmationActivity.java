@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
-    private EditText merchant_id;
-    private EditText amount_id;
-    private EditText location_id;
+    private TextView merchant_id;
+    private TextView amount_id;
+    private TextView location_id;
     private Button confirmButton;
     private Button authenticateButton;
     private Button cancelButton;
