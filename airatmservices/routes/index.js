@@ -51,11 +51,11 @@ routes.post('/login', (req, res) => {
     //res.redirect('/index');
 });
 
-routes.get('/findUsers',(req,res) =>{
-	var clientLongitude = req.params.longitude;
-	var clientLatitude = req.params.latitude;
+routes.post('/findUsers',(req,res) =>{
+	var clientLongitude = req.body.longitude;
+	var clientLatitude = req.body.latitude;
 
-	res.send(clientLongitude + " " + clientLatitude);
+	//res.send(clientLongitude + " " + clientLatitude);
 
 	User.find({}, function(err, users){
 		var index = 0;
