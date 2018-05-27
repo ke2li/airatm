@@ -6,8 +6,14 @@
     <string name="choose_location">CHOOSE A LOCATION</string>
     <string name="address_text">Address</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password_hint">Password</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
+    <string name="name_text">Name: </string>
+    <string name="fName_hint">First</string>
+    <string name="lName_hint">Last</string>
+    <string name="email_text">Email: </string>
     <string name="merchant_text">Merchant: </string>
     <string name="amount_text">Amount: </string>
     <string name="location_text">Location: </string>

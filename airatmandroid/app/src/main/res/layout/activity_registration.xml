@@ -1,9 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
+    tools:context=".RegistrationActivity"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="@string/name_text"
+            android:fontFamily="@font/futura"
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/fName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/fName_hint"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="36dp"
+            android:textSize="24dp"
+            android:fontFamily="@font/futura"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/merchant_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="@string/name_text"
+            android:fontFamily="@font/futura"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="@color/colorBackground"/>
+
+        <EditText
+            android:id="@+id/lName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/lName_hint"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="36dp"
+            android:textSize="24dp"
+            android:fontFamily="@font/futura"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="@string/email_text"
+            android:fontFamily="@font/futura"
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_hint"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="36dp"
+            android:textSize="24dp"
+            android:fontFamily="@font/futura"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorButton"
+        android:textSize="24dp"
+        android:fontFamily="@font/futura"/>
+
+</LinearLayout>
