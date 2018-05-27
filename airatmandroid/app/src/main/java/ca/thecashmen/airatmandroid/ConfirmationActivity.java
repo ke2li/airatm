@@ -39,7 +39,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                 /*
                 implement saving the data of transaction
                  */
-                Intent intent = new Intent(ConfirmationActivity.this, RequestActivity.class);
+                Intent intent = new Intent(ConfirmationActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
