@@ -20,8 +20,7 @@ routes.post('/newuser', (req, res) => {
 
 	user.save(err => {
 		if(err) return res.status(401).json(err);
-		console.log("Registration success");
-		return res.status(200);
+		return res.status(200).json("Registration success");
 		//res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	});
 });
@@ -41,14 +40,14 @@ routes.post('/login', (req, res) => {
             if (user.password === password){
                 response.success = true;
                 response.message = "Successfully Authenticated";
-                return res.status(200);
+                return res.status(200).json("Login Successful");
             } else {
                 response.message = "Wrong Password";
-                return res.status(401);
+                return res.status(401).json("Login Unsuccessful");
             }
         } else {
             response.message = "User does not exist";
-            return res.status(401);
+            return res.status(401).json("Login Unsuccessful");
         }
     });
     //res.redirect('/index');
@@ -57,7 +56,7 @@ routes.post('/login', (req, res) => {
 routes.post('/findUsers',(req,res) =>{
 	User.find({}, function(err, users){
 		if(err) return res.status(401).json(err);
-		res.status(200).send(JSON.stringify(users));
+		return res.status(200).json(JSON.stringify(users));
 	});
 });
 
@@ -67,9 +66,9 @@ routes.post('/findUserByEmail', (req, res) =>{
 	User.find({email: email}, function(err, users){
 		if(err) return res.stats(401).json(err);
 		if(users.length > 0){
-			res.status(200).send(users[0]);
+			return res.status(200).json(users[0]);
 		}
-		return res.status(401);
+		return res.status(401).json("Could not find user");
 	});
 });
 
@@ -99,10 +98,10 @@ routes.post("/exchangeCash", (req,res) =>{
     });
 
     if (clientUpdate && merchantUpdate){
-    	return res.status(200);
+    	return res.status(200).json("Sucessfully updated");
     }
     else{
-    	return res.status(401);
+    	return res.status(401).json("Update unsuccessful");
     }
 });
 
@@ -123,7 +122,7 @@ routes.post("/newTransaction", (req,res) => {
 
 	transaction.save(err=>{
 		if(err)return res.status(401).json(err);
-		return res.status(200);
+		return res.status(200).json();
 		//res.send(JSON.stringify(transaction));
 	});
 });
@@ -131,7 +130,7 @@ routes.post("/newTransaction", (req,res) => {
 routes.post("/allTransactions", (req,res)=>{
 	Transaction.find({merchantEmail: undefined}, function(err, transactions){
 		if(err) return res.stats(401).json(err);
-		res.status(200).send(JSON.stringify(transactions));
+		return res.status(200).json(transactions);
 	});
 });
 
@@ -141,7 +140,7 @@ routes.post("/satisfyRequest", (req, res)=>{
 
 	Transaction.findOneAndUpdate({clientEmail: clientEmail},{merchantEmail: merchantEmail}, function(err, transactions){
 		if(err) return res.status(401).json(err);
-		return res.status(200);
+		return res.status(200).json("Matched");
 	});
 });
 
@@ -152,7 +151,7 @@ routes.post("/transactionLookup", (req, res) =>{
 	Transaction.find({merchantEmail: email}, function(err, transactions){
 		if(err) return res.status(401).json(err);
 		if(transactions.length > 0){
-			res.status(200).send(transactions[0]);
+			res.status(200).json(transactions[0]);
 		} 
 		else{
 			merchantSent = false;
@@ -162,7 +161,7 @@ routes.post("/transactionLookup", (req, res) =>{
 	Transaction.find({clientEmail: email}, function(err, transactions){
 		if(err) return res.status(401).json(err);
 		if(transactions.length > 0){
-			res.status(200).send(transactions[0]);
+			res.status(200).json(transactions[0]);
 		}
 		else{
 			clientSent = false;
@@ -170,7 +169,7 @@ routes.post("/transactionLookup", (req, res) =>{
 	});
 
 	if(!merchantSent && !clientSent){
-		return res.status(401);
+		return res.status(401).json("No transaction found");
 	}
 });
 
