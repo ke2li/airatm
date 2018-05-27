@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,9 +39,11 @@ public class ConfirmationActivity extends AppCompatActivity implements OnMapRead
         cancelButton = findViewById(R.id.cancel_button);
 
         mapView = findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         meetingLocation = new LatLng(getIntent().getExtras().getDouble("latitude")
                 , getIntent().getExtras().getDouble("longitude"));
+        mapView.onResume();
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +96,6 @@ public class ConfirmationActivity extends AppCompatActivity implements OnMapRead
         mGoogleMap = googleMap;
         mCurrLocationMarker = mGoogleMap.addMarker((new MarkerOptions().position(meetingLocation))
                 .title("Meetup Point"));
+        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(meetingLocation, 17));
     }
 }

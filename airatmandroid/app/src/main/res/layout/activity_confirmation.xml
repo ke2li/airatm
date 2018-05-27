@@ -11,7 +11,10 @@
         android:id="@+id/map"
         class="com.google.android.gms.maps.MapView"
         android:layout_width="match_parent"
-        android:layout_height="360dp" />
+        android:layout_height="360dp"
+        android:enabled="true"
+        android:clickable="true"
+        android:apiKey="AIzaSyB94GbpSoxWQr2AyBvq8xHep2yAV8ATC8A"/>
 
     <LinearLayout
         android:layout_width="match_parent"
