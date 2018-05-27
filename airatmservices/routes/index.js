@@ -68,11 +68,12 @@ routes.post('/findUsers',(req,res) =>{
 			}
 			index++;
 		}
+		
 		res.send(JSON.stringify(nearbyUsers));
 	});
 });
 
-routes.get('/findUserByEmail', (req, res) =>{
+routes.post('/findUserByEmail', (req, res) =>{
 	var email = req.body.email;
 
 	User.find({email: email}, function(err, users){
