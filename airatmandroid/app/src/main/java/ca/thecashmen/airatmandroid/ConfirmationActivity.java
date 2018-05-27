@@ -18,7 +18,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     private Button cancelButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
 
