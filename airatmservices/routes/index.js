@@ -74,20 +74,19 @@ routes.post("/exchangeCash", (req,res) =>{
 	var newMerchantBalance = req.body.merchantBalance;
 	var newClientCash = req.body.clientCash;
 	var newMerchantCash = req.body.newMerchantCash;
-	var amount = req.body.amount;
 
 	var clientUpdate = false;
 	var merchantUpdate = false;
 
 
 
-    User.fineOneAndUpdate({email: clientEmail}, {$set:{accBalance: newClientBalance, cashOnHand: newClientCash}}, function(err, res) {
+    User.fineOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	clientUpdate = true;
     });
 
 
-	User.fineOneAndUpdate({email: merchantEmail}, {$set:{accBalance: newMerchantBalance, cashOnHand: newMerchantCash}}, function(err, res) {
+	User.fineOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	merchantUpdate = true;
     });
