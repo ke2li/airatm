@@ -5,7 +5,7 @@ const Transcation = require("../models/transactions");
 
 routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
 
-routes.post('/newuser', (req, res, next) => {
+routes.post('/newuser', (req, res) => {
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var password = req.body.password;
@@ -20,7 +20,8 @@ routes.post('/newuser', (req, res, next) => {
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
-		console.log("Registration sucess");
+		console.log("Registration success");
+		res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	});
 });
 
