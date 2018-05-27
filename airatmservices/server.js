@@ -15,7 +15,6 @@ const User = require('./models/user');
 const transactions = require('./models/transactions');
 var routes = require('./routes');
 
-//app.use(cors({origin: '*'}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}));
 app.use('/', routes);
