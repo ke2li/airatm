@@ -11,6 +11,7 @@ routes.post('/newuser', (req, res) => {
 	var password = req.body.password;
 	var email = req.body.email;
 
+
 	//if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
 
 	var user = new User({
@@ -25,7 +26,7 @@ routes.post('/newuser', (req, res) => {
 		//res.json(user);
 	});
 
-	res.send(JSON.stringify(user));
+	res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	//res.redirect('/login');
 });
 
