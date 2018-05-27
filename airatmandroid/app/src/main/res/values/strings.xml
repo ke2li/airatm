@@ -23,4 +23,6 @@
     <string name="authenticate_button_text">AUTHENTICATE</string>
     <string name="cancel_button_text">CANCEL</string>
     <string name="confirm_button_text">CONFIRM</string>
+    <string name="success_header">TRADE SUCCESS</string>
+    <string name="OK_button">OK</string>
 </resources>

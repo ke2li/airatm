@@ -35,7 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LendActivity"></activity>
+        <activity android:name=".LendActivity" />
+        <activity android:name=".SuccessActivity"></activity>
     </application>
 
 </manifest>
