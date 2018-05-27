@@ -20,6 +20,8 @@ routes.post('/newuser', (req, res) => {
 		email: email
 	});
 
+	console.log(JSON.stringify(user));
+
 	user.save(err => {
 		if(err) return res.status(400).json(err);
 		res.json(user);
@@ -50,7 +52,6 @@ routes.post('/login', (req, res) => {
             response.message = "User does not exist";
         }
     })
-
     //res.redirect('/index');
 });
 
