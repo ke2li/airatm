@@ -37,7 +37,8 @@
         </activity>
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LendActivity" />
-	<activity android:name=".ScannerActivity"/>
+        <activity android:name=".SuccessActivity" />
+	    <activity android:name=".ScannerActivity"/>
     </application>
 
 </manifest>
