@@ -1,4 +1,4 @@
-package ca.thecashmen.airatmandroid;
+package ca.thecashmen.airatmandroid.Model;
 
 public class User {
     private String firstName;
