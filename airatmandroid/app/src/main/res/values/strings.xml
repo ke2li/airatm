@@ -18,6 +18,7 @@
     <string name="last_name_hint">Last</string>
     <string name="email_text">Email: </string>
     <string name="merchant_text">Merchant: </string>
+    <string name="customer_text">Customer: </string>
     <string name="amount_text">Amount: </string>
     <string name="location_text">Location: </string>
     <string name="authenticate_button_text">AUTHENTICATE</string>
