@@ -46,8 +46,8 @@ routes.post('/login', (req, res) => {
         } else {
             response.message = "User does not exist";
         }
+        res.send(response.success + email + password + " " + user.email + user.password);
     })
-    res.send(response.success + email + password + " " + user.email + user.password);
     //res.redirect('/index');
 });
 
