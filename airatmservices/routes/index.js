@@ -3,7 +3,7 @@ const routes = express.Router();
 const User = require('../models/user');
 const Transcation = require("../models/transactions");
 
-routes.get('/', (req, res) => res.send('ahhhhhhhh wtf'));
+routes.post('/', (req, res) => res.send('Nothing Here'));
 
 routes.post('/newuser', (req, res) => {
 	var firstName = req.body.firstName;
@@ -51,7 +51,7 @@ routes.post('/login', (req, res) => {
     //res.redirect('/index');
 });
 
-routes.get('/findUsers',(req,res) =>{
+routes.post('/findUsers',(req,res) =>{
 	User.find({}, function(err, users){
 		res.send(JSON.stringify(users));
 	});
@@ -115,7 +115,7 @@ routes.post("/newTransaction", (req,res) => {
 	});
 });
 
-routes.get("/allTransactions", (req,res)=>{
+routes.post("/allTransactions", (req,res)=>{
 	Transaction.find({merchantEmail: undefined}, function(err, users){
 		res.send(JSON.stringify(users));
 	});
@@ -124,10 +124,22 @@ routes.get("/allTransactions", (req,res)=>{
 routes.post("/satisfyRequest", (req, res)=>{
 	var clientEmail = req.body.clientEmail;
 	var merchantEmail = req.body.merchantEmail;
+
+	Transaction.findOneAndUpdate({clientEmail: clientEmail},{merchantEmail: merchantEmail}, function(err, transactions){
+		if(err) return res.send(500,{error,err});
+	});
 });
 
-routes.put("/updateInfo", (req,res) =>{
-
+routes.post("/transactionLookup", (req, res) =>{
+	var email = req.body.email;
+	Transaction.find({merchantEmail: email || clientEmail: email}, function(err, transactions){
+		if(transactions.length > 0){
+			res.send(transactions[0]);
+		}
+		else{
+			return res.status(404);
+		}
+	});
 });
 
 module.exports = routes;
