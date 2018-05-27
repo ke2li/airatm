@@ -51,25 +51,9 @@ routes.post('/login', (req, res) => {
     //res.redirect('/index');
 });
 
-routes.post('/findUsers',(req,res) =>{
-	var clientLongitude = req.body.longitude;
-	var clientLatitude = req.body.latitude;
-
-	//res.send(clientLongitude + " " + clientLatitude);
-
+routes.get('/findUsers',(req,res) =>{
 	User.find({}, function(err, users){
-		var index = 0;
-		var nearbyUsers = {};
-		var nNearby = 0;
-		while(users[index] != undefined){
-			//500 metre radius
-			if(measure(clientLatitude, clientLongitude, users[index].latitude, users[index].longitude) < 500){
-				nearbyUsers[nNearby++] = users[index];
-			}
-			index++;
-		}
-		
-		res.send(JSON.stringify(nearbyUsers));
+		res.send(JSON.stringify(users));
 	});
 });
 
@@ -78,41 +62,34 @@ routes.post('/findUserByEmail', (req, res) =>{
 
 	User.find({email: email}, function(err, users){
 		if(users.length > 0){
-			res.json(users[0]);
+			res.send(users[0]);
 		}
 	});
 });
 
-function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement function
-    var R = 6378.137; // Radius of earth in KM
-    var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
-    var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon/2) * Math.sin(dLon/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c;
-    return d * 1000; // meters
-}
-
-routes.put("/transaction", (req,res) =>{
+routes.post("/transaction", (req,res) =>{
 	var clientEmail = req.body.clientEmail;
 	var merchantEmail = req.body.merchantEmail;
 	var commission = req.body.commission;
 	var amount = req.body.amount;
-	var accBalance = req.body.accBalance;
-	var cashOnHand = req.body.cashOnHand;
+	var clientUpdate = false;
+	var merchantUpdate = false;
+
+	
 
     User.fineOneAndUpdate({email: clientEmail}, {$set:{accBalance: accBalance-amount-commission, cashOnHand: cashOnHand+amount}}, function(err, res) {
     	if (err) return res.send(500, {error:err});
-    	return res.send("Succesfully changed client account balance")
+    	clientUpdate = true;
     });
 
 
 	User.fineOneAndUpdate({email: merchantEmail}, {$set:{accBalance: accBalance+amount+commission, cashOnHand: cashOnHand-amount}}, function(err, res) {
     	if (err) return res.send(500, {error:err});
-    	return res.send("Succesfully changed merchant account balance")
+    	merchantUpdate = true;
     });
+
+    if (clientUpdate && merchantUpdate)
+    	res.send("Successful transaction");
 });
 
 routes.put("/updateInfo", (req,res) =>{
