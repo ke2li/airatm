@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class RequestActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     private EditText requestAmount;
     private Button requestMoney;
@@ -19,19 +19,19 @@ public class RequestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request);
+        setContentView(R.layout.activity_menu);
 
         requestAmount = findViewById(R.id.request_amount);
         requestAmount.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
         requestMoney = findViewById(R.id.request_money_button);
-        requestMoney = findViewById(R.id.lend_button);
+        lend = findViewById(R.id.lend_button);
         viewTransactions = findViewById(R.id.view_transactions_button);
 
         requestMoney.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 if(!requestAmount.getText().toString().matches("") && Float.parseFloat(requestAmount.getText().toString()) != 0){
-                    Intent intent = new Intent(RequestActivity.this, MapActivity.class);
+                    Intent intent = new Intent(MenuActivity.this, MapActivity.class);
                     startActivity(intent);
                 } else{
                     Toast.makeText(getApplicationContext(), "Please enter a monetary amount.", Toast.LENGTH_LONG).show();
@@ -42,7 +42,7 @@ public class RequestActivity extends AppCompatActivity {
         lend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(RequestActivity.this, MapActivity.class);
+                Intent intent = new Intent(MenuActivity.this, LendActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class RequestActivity extends AppCompatActivity {
                 // if(a transaction exists)
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("confirmationButtonHide", true);
-                Intent intent = new Intent(RequestActivity.this, ConfirmationActivity.class);
+                Intent intent = new Intent(MenuActivity.this, ConfirmationActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
