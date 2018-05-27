@@ -24,7 +24,7 @@ routes.post('/newuser', (req, res) => {
 
 	user.save(err => {
 		if(err) return res.status(400).json(err);
-		res.json(user);
+		//res.json(user);
 	});
 
 	res.redirect('/login');
