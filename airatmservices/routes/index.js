@@ -119,7 +119,7 @@ routes.post("/newTransaction", (req,res) => {
 
 	transaction.save(err=>{
 		if(err)return res.status(401).json(err);
-		res.send(JSON.stringify(transaction));
+		//res.send(JSON.stringify(transaction));
 	});
 });
 
