@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         requestAmount = findViewById(R.id.request_amount);
         requestAmount.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
         requestMoney = findViewById(R.id.request_money_button);
-        requestMoney = findViewById(R.id.lend_button);
+        lend = findViewById(R.id.lend_button);
         viewTransactions = findViewById(R.id.view_transactions_button);
 
         requestMoney.setOnClickListener(new View.OnClickListener(){
@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
         lend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MenuActivity.this, MapActivity.class);
+                Intent intent = new Intent(MenuActivity.this, LendActivity.class);
                 startActivity(intent);
             }
         });
