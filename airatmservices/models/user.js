@@ -9,11 +9,11 @@ const user = mongoose.Schema({
 		type: String,
 	},
 
-	email: {
+	password: {
 		type: String,
 	},
 
-	password: {
+	email: {
 		type: String,
 	},
 
