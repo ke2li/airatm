@@ -13,15 +13,19 @@ public class RequestActivity extends AppCompatActivity {
 
     private EditText requestAmount;
     private Button requestMoney;
+    private Button lend;
+    private Button viewTransactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
 
-        requestAmount = findViewById(R.id.requestAmount);
+        requestAmount = findViewById(R.id.request_amount);
         requestAmount.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
-        requestMoney = findViewById(R.id.requestMoneyButton);
+        requestMoney = findViewById(R.id.request_money_button);
+        requestMoney = findViewById(R.id.lend_button);
+        viewTransactions = findViewById(R.id.view_transactions_button);
 
         requestMoney.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -32,6 +36,26 @@ public class RequestActivity extends AppCompatActivity {
                 } else{
                     Toast.makeText(getApplicationContext(), "Please enter a monetary amount.", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        lend.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(RequestActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewTransactions.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                // if(a transaction exists)
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("confirmationButtonHide", true);
+                Intent intent = new Intent(RequestActivity.this, ConfirmationActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

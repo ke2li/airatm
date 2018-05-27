@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">airatm</string>
     <string name="request_amount_hint">0.00</string>
-    <string name="time_header">SELECT A TIME</string>
+    <string name="request_header">REQUEST A TRANSACTION</string>
     <string name="amount_header">ENTER AN AMOUNT</string>
     <string name="choose_location">CHOOSE A LOCATION</string>
+    <string name="lend_header">ANSWER A TRANSACTION</string>
+    <string name="lend">LEND</string>
+    <string name="view_transactions">VIEW YOUR TRANSACTIONS</string>
     <string name="address_text">Address</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="email_hint">Email Address</string>
