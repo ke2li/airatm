@@ -32,6 +32,8 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view){
                 if(!requestAmount.getText().toString().matches("") && Float.parseFloat(requestAmount.getText().toString()) != 0){
                     Bundle bundle = new Bundle();
+                    bundle.putString("email", getIntent().getExtras().getString("email"));
+                    bundle.putString("password", getIntent().getExtras().getString("password"));
                     bundle.putFloat("amount", Float.parseFloat(requestAmount.getText().toString()));
                     Intent intent = new Intent(MenuActivity.this, MapActivity.class);
                     intent.putExtras(bundle);

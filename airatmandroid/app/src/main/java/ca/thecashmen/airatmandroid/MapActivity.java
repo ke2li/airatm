@@ -63,6 +63,12 @@ public class MapActivity extends AppCompatActivity
             @Override
             public void onClick(View view){
                 if(mCurrLocationMarker != null){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("email", getIntent().getExtras().getString("email"));
+                    bundle.putString("password", getIntent().getExtras().getString("password"));
+                    bundle.putFloat("amount", getIntent().getExtras().getFloat("amount"));
+                    bundle.putDouble("latitude", currentLocation.latitude);
+                    bundle.putDouble("longitude", currentLocation.longitude);
                     Intent intent = new Intent(MapActivity.this,
                             ConfirmationActivity.class);
                     startActivity(intent);
