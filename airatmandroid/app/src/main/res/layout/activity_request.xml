@@ -10,6 +10,18 @@
     android:background="@color/colorBackground"
     android:orientation="vertical" >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_header"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount_header"
+        android:textSize="24dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +43,8 @@
             android:hint="@string/request_amount_hint"
             android:textAlignment="center"
             android:textSize="32dp"
-            android:fontFamily="@font/futura" />
+            android:fontFamily="@font/futura"
+            android:cursorVisible="false" />
 
     </LinearLayout>
 
@@ -40,7 +53,7 @@
         android:background="@color/colorButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/request_button_text"
+        android:text="@string/choose_location"
         android:textSize="24dp"
         android:fontFamily="@font/futura" />
 </LinearLayout>

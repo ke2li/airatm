@@ -25,7 +25,7 @@
         android:fontFamily="@font/futura"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -36,7 +36,7 @@
         android:fontFamily="@font/futura"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -47,7 +47,7 @@
         android:fontFamily="@font/futura"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_button"
@@ -59,7 +59,7 @@
         android:fontFamily="@font/futura"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register_button"
