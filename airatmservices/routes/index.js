@@ -21,6 +21,7 @@ routes.post('/newuser', (req, res) => {
 	user.save(err => {
 		if(err) return res.status(401).json(err);
 		console.log("Registration success");
+		return res.status(200);
 		//res.send(JSON.stringify(user) + firstName + lastName + password + email);
 	});
 });
@@ -55,7 +56,8 @@ routes.post('/login', (req, res) => {
 
 routes.post('/findUsers',(req,res) =>{
 	User.find({}, function(err, users){
-		res.send(JSON.stringify(users));
+		if(err) return res.status(401).json(err);
+		res.status(200).send(JSON.stringify(users));
 	});
 });
 
@@ -63,9 +65,11 @@ routes.post('/findUserByEmail', (req, res) =>{
 	var email = req.body.email;
 
 	User.find({email: email}, function(err, users){
+		if(err) return res.stats(401).json(err);
 		if(users.length > 0){
-			res.send(users[0]);
+			res.status(200).send(users[0]);
 		}
+		return res.status(401);
 	});
 });
 
@@ -84,13 +88,13 @@ routes.post("/exchangeCash", (req,res) =>{
 
 
     User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash, numTradesPerformed: newNumTradesClient}, function(err, res) {
-    	if (err) return res.send(500, {error:err});
+    	if (err) return res.status(401).json(err);
     	clientUpdate = true;
     });
 
 
 	User.findOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash, numTradesPerformed: newNumTradesMerchant}, function(err, res) {
-    	if (err) return res.send(500, {error:err});
+    	if (err) return res.status(401).json(err);
     	merchantUpdate = true;
     });
 
@@ -119,13 +123,15 @@ routes.post("/newTransaction", (req,res) => {
 
 	transaction.save(err=>{
 		if(err)return res.status(401).json(err);
+		return res.status(200);
 		//res.send(JSON.stringify(transaction));
 	});
 });
 
 routes.post("/allTransactions", (req,res)=>{
 	Transaction.find({merchantEmail: undefined}, function(err, transactions){
-		res.send(JSON.stringify(transactions));
+		if(err) return res.stats(401).json(err);
+		res.status(200).send(JSON.stringify(transactions));
 	});
 });
 
@@ -134,26 +140,38 @@ routes.post("/satisfyRequest", (req, res)=>{
 	var merchantEmail = req.body.merchantEmail;
 
 	Transaction.findOneAndUpdate({clientEmail: clientEmail},{merchantEmail: merchantEmail}, function(err, transactions){
-		if(err) return res.send(401,{error,err});
+		if(err) return res.status(401).json(err);
+		return res.status(200);
 	});
 });
 
 routes.post("/transactionLookup", (req, res) =>{
 	var email = req.body.email;
+	var merchantSent = true;
+	var clientSent = true;
 	Transaction.find({merchantEmail: email}, function(err, transactions){
+		if(err) return res.status(401).json(err);
 		if(transactions.length > 0){
-			res.send(transactions[0]);
+			res.status(200).send(transactions[0]);
+		} 
+		else{
+			merchantSent = false;
 		}
 	});
 
 	Transaction.find({clientEmail: email}, function(err, transactions){
+		if(err) return res.status(401).json(err);
 		if(transactions.length > 0){
-			res.send(transactions[0]);
+			res.status(200).send(transactions[0]);
 		}
 		else{
-			return res.status(401);
+			clientSent = false;
 		}
 	});
+
+	if(!merchantSent && !clientSent){
+		return res.status(401);
+	}
 });
 
 module.exports = routes;
