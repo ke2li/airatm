@@ -10,8 +10,6 @@ routes.post('/newuser', (req, res) => {
 	var lastName = req.body.lastName;
 	var password = req.body.password;
 	var email = req.body.email;
-	console.log(req.body);
-	console.log(firstName + " " + lastName + " " + password + " " + email);
 
 	var user = new User({
 		firstName: firstName,
@@ -30,7 +28,6 @@ routes.post('/newuser', (req, res) => {
 routes.post('/login', (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
-    console.log(req.body);
 
     var response = {
         success: false,
