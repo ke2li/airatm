@@ -20,5 +20,7 @@
     <string name="merchant_text">Merchant: </string>
     <string name="amount_text">Amount: </string>
     <string name="location_text">Location: </string>
+    <string name="authenticate_button_text">AUTHENTICATE</string>
+    <string name="cancel_button_text">CANCEL</string>
     <string name="confirm_button_text">CONFIRM</string>
 </resources>
