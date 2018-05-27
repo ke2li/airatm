@@ -14,6 +14,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     private EditText amount_id;
     private EditText location_id;
     private Button confirmButton;
+    private boolean confirmationButtonHide = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,12 @@ public class ConfirmationActivity extends AppCompatActivity {
         amount_id = findViewById(R.id.amount_id);
         location_id = findViewById(R.id.location_id);
         confirmButton = findViewById(R.id.confirm_button);
+
+        if(getIntent().getExtras() != null && getIntent().getExtras().getBoolean("confirmationButtonHide",false)){
+            confirmButton.setVisibility(View.GONE);
+        } else{
+            confirmButton.setVisibility(View.VISIBLE);
+        }
 
         confirmButton.setOnClickListener(new View.OnClickListener(){
             @Override
