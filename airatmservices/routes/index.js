@@ -13,7 +13,7 @@ routes.post('/newuser', (req, res) => {
 
 	//if(!firstName || !lastName || !password ||!email) return res.status(400).send("Missing fields");
 
-	var user = new User({
+	var user = User({
 		firstName: firstName,
 		lastName: lastName,
 		password: password,
