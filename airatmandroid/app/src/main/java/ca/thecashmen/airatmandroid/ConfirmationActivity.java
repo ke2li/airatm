@@ -5,16 +5,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ConfirmationActivity extends AppCompatActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class ConfirmationActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private TextView merchant_id;
     private Button confirmButton;
     private Button authenticateButton;
     private Button cancelButton;
+
+    GoogleMap mGoogleMap;
+    MapView mapView;
+    Marker mCurrLocationMarker;
+    LatLng meetingLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,6 +36,11 @@ public class ConfirmationActivity extends AppCompatActivity {
         confirmButton = findViewById(R.id.confirm_button);
         authenticateButton = findViewById(R.id.authenticate_button);
         cancelButton = findViewById(R.id.cancel_button);
+
+        mapView = findViewById(R.id.map);
+        mapView.getMapAsync(this);
+        meetingLocation = new LatLng(getIntent().getExtras().getDouble("latitude")
+                , getIntent().getExtras().getDouble("longitude"));
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,5 +86,12 @@ public class ConfirmationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mGoogleMap = googleMap;
+        mCurrLocationMarker = mGoogleMap.addMarker((new MarkerOptions().position(meetingLocation))
+                .title("Meetup Point"));
     }
 }
