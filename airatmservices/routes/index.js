@@ -80,13 +80,13 @@ routes.post("/exchangeCash", (req,res) =>{
 
 
 
-    User.fineOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash}, function(err, res) {
+    User.findOneAndUpdate({email: clientEmail}, {accBalance: newClientBalance, cashOnHand: newClientCash}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	clientUpdate = true;
     });
 
 
-	User.fineOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash}, function(err, res) {
+	User.findOneAndUpdate({email: merchantEmail}, {accBalance: newMerchantBalance, cashOnHand: newMerchantCash}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	merchantUpdate = true;
     });
