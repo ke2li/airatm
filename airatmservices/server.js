@@ -12,7 +12,7 @@ var db = mongoose.connection;
 //var mongo = require('mongodb');
 
 const User = require('./models/user');
-const transactions = require('./models/transactions')
+const transactions = require('./models/transactions');
 var routes = require('./routes');
 
 //app.use(cors({origin: '*'}))
