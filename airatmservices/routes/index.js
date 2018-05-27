@@ -67,29 +67,64 @@ routes.post('/findUserByEmail', (req, res) =>{
 	});
 });
 
-routes.post("/transaction", (req,res) =>{
+routes.post("/exchangeCash", (req,res) =>{
 	var clientEmail = req.body.clientEmail;
 	var merchantEmail = req.body.merchantEmail;
-	var commission = req.body.commission;
+	var newClientBalance = req.body.clientBalance;
+	var newMerchantBalance = req.body.merchantBalance;
+	var newClientCash = req.body.clientCash;
+	var newMerchantCash = req.body.
 	var amount = req.body.amount;
+
 	var clientUpdate = false;
 	var merchantUpdate = false;
 
-	
 
-    User.fineOneAndUpdate({email: clientEmail}, {$set:{accBalance: accBalance-amount-commission, cashOnHand: cashOnHand+amount}}, function(err, res) {
+
+    User.fineOneAndUpdate({email: clientEmail}, {$set:{accBalance: newClientBalance, cashOnHand: newClientCash}}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	clientUpdate = true;
     });
 
 
-	User.fineOneAndUpdate({email: merchantEmail}, {$set:{accBalance: accBalance+amount+commission, cashOnHand: cashOnHand-amount}}, function(err, res) {
+	User.fineOneAndUpdate({email: merchantEmail}, {$set:{accBalance: newMerchantBalance, cashOnHand: newMerchantCash}}, function(err, res) {
     	if (err) return res.send(500, {error:err});
     	merchantUpdate = true;
     });
 
     if (clientUpdate && merchantUpdate)
     	res.send("Successful transaction");
+});
+
+routes.post("/newTransaction", (req,res) => {
+	var amount = req.body.amount;
+	var commission = req.body.commission;
+	var clientEmail = req.body.clientEmail;
+	var latitude = req.body.latitude;
+	var longitude = req.body.longitude;
+
+	var transaction = new Transaction({
+		amount: amount,
+		commission: commission,
+		clientEmail: clientEmail,
+		longitude: longitude,
+		latitude: latitude
+	});
+
+	transaction.save(err=>{
+		if(err)return res.status(400).json(err);
+	});
+});
+
+routes.get("/allTransactions", (req,res)=>{
+	Transaction.find({merchantEmail: undefined}, function(err, users){
+		res.send(JSON.stringify(users));
+	});
+});
+
+routes.post("/satisfyRequest", (req, res)=>{
+	var clientEmail = req.body.clientEmail;
+	var merchantEmail = req.body.merchantEmail;
 });
 
 routes.put("/updateInfo", (req,res) =>{

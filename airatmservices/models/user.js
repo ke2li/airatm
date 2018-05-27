@@ -17,7 +17,7 @@ const user = mongoose.Schema({
 		type: String,
 	},
 
-	reputation: {
+	score: {
 		type: Number,
 		default: 0,
 	},
@@ -48,11 +48,16 @@ const user = mongoose.Schema({
 	online: {
 		type: Boolean,
 	},
+
+	numTradesPerformed: {
+		type: Number,
+		default: 0,
+	},
 });
 
 user.methods.toJSONFor = function() {
-	const {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online} = this;
-	return {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online};
+	const {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online, numTradesPerformed} = this;
+	return {firstName, lastName, email, password, reputation, verified, accBalance, cashOnHand, longitude, latitude, online, numTradesPerformed};
 };
 
 module.exports = mongoose.model("User", user);
