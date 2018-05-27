@@ -24,5 +24,6 @@
     <string name="cancel_button_text">CANCEL</string>
     <string name="confirm_button_text">CONFIRM</string>
     <string name="success_header">TRADE SUCCESS</string>
+    <string name="rate_text">Rate your merchant:</string>
     <string name="OK_button">OK</string>
 </resources>
